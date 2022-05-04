@@ -1,5 +1,6 @@
 // dart
 import 'dart:async';
+import 'package:file_picker/file_picker.dart';
 
 // packages
 import 'package:flutter/material.dart';
@@ -111,7 +112,14 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                             IconButton(
                                 icon: const Icon(Icons.upload_file),
-                                onPressed: () { 
+                                onPressed: () async { 
+                                    final result = await FilePicker.platform.pickFiles();
+
+                                    if (result != null) {
+                                        // File file = File(result.files.single.path);
+                                    } else {
+                                        // User canceled the picker
+                                    }
                                 }
                             ),
                             IconButton(
