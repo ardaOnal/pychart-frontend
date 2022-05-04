@@ -109,19 +109,38 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () { 
                                 }
                             ),
+                            IconButton(
+                                icon: const Icon(Icons.upload_file),
+                                onPressed: () { 
+                                }
+                            ),
+                            IconButton(
+                                icon: const Icon(Icons.save),
+                                onPressed: () { 
+                                }
+                            ),
                             FlatButton(  
                                 child: Text('Ereeeeeeeeeeen', style: TextStyle(fontSize: 20.0),),  
                                 onPressed: () {}) 
                         ]
                     ),
-                    body: Center (child: EditorWidget(data:data)),
-                    bottomSheet: Container (child: ConstrainedBox(
-                        constraints: BoxConstraints(minHeight: 50),
-                        child: Icon(
-                        Icons.add,
-                        size: 80,
-                        color: Colors.red,
-                        )))
+                    body: Container (
+                        decoration: new BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            border: new Border.all(
+                            color: Colors.black,
+                            width: 10.0,
+                            ),
+                        ),
+                        child: EditorWidget(data:data)),
+                    bottomSheet: Container (child: TextField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: 'Password',
+                        ),
+                        )
+                    )
                 )
             );
   }

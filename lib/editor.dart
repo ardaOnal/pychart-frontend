@@ -129,7 +129,7 @@ class EditorState extends State<EditorWidget> {
                     keyboardType: TextInputType.multiline,
                     autofocus: true,
                     expands: true,
-                    maxLines: null,
+                    maxLines: null 
                 )
             )
         );
