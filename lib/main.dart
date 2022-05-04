@@ -109,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () { 
                                 }
                             ),
-                            IconButton(
+                                                        IconButton(
                                 icon: const Icon(Icons.upload_file),
                                 onPressed: () { 
                                 }
@@ -124,23 +124,27 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {}) 
                         ]
                     ),
-                    body: Container (
+                                        body: Container (
                         decoration: new BoxDecoration(
                             shape: BoxShape.rectangle,
                             border: new Border.all(
-                            color: Colors.black,
-                            width: 10.0,
+                            color: Colors.white,
+                            width: 20.0,
                             ),
                         ),
-                        child: EditorWidget(data:data)),
-                    bottomSheet: Container (child: TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: 'Password',
-                        ),
-                        )
+                        child: Flexible( flex: 3, child: EditorWidget(data:data))),
+                        bottomSheet: Flexible( flex: 2, child: Container (child: TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Password',
+                                
+                            ),
+                            ), 
+                            height: 200,
+                        color: Colors.grey[850]
                     )
+                )
                 )
             );
   }
