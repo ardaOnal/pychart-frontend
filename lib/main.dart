@@ -101,16 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             )
                         ]
                     ),
-                    body: TabbedViewTheme(
-                        data: theme.tabbedView,
-
-                        child: //Container(
-                            // padding: const EdgeInsets.all(16),
-                            /* child: */ Docking(
-                                layout: DockingLayout(root: DockingRow([EditorWindow(widget: widget, data: data), FlowChartView(widget)]))
-                            )
-                        // )
-                    )
+                    body: Center (child: EditorWidget(data:data))
                 )
             );
   }

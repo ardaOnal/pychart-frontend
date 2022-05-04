@@ -111,15 +111,15 @@ class EditorState extends State<EditorWidget> {
             actions: { CallIntent: CallAction() },
             child: Shortcuts(
                 shortcuts: { 
-                    LogicalKeySet(LogicalKeyboardKey.tab):
+                    LogicalKeySet(LogicalKeyboardKey.tab):  
                         CallIntent((){ 
                             final max = _max;
                             var controller = widget.data.controller;
                             String insert = "   ";
                             final int cursorPos = controller.selection.base.offset;
                             controller.value = controller.value.copyWith(
-                                text: controller.text.replaceRange(max(cursorPos, 0), max(cursorPos, 0), insert),
-                                selection: TextSelection.fromPosition(TextPosition(offset: max(cursorPos, 0) + insert.length))
+                                text: controller.text.replaceRange(cursorPos, cursorPos, insert),
+                                selection: TextSelection.fromPosition(TextPosition(offset: cursorPos + insert.length))
                             );
                         })
                 },
