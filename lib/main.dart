@@ -98,10 +98,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                         });
                                     });
                                 }
-                            )
+                            ),
+                            IconButton(
+                                icon: const Icon(Icons.arrow_forward_ios_rounded),
+                                onPressed: () { 
+                                }
+                            ),
+                            IconButton(
+                                icon: const Icon(Icons.archive),
+                                onPressed: () { 
+                                }
+                            ),
+                            FlatButton(  
+                                child: Text('Ereeeeeeeeeeen', style: TextStyle(fontSize: 20.0),),  
+                                onPressed: () {}) 
                         ]
                     ),
-                    body: Center (child: EditorWidget(data:data))
+                    body: Center (child: EditorWidget(data:data)),
+                    bottomSheet: Container (child: ConstrainedBox(
+                        constraints: BoxConstraints(minHeight: 50),
+                        child: Icon(
+                        Icons.add,
+                        size: 80,
+                        color: Colors.red,
+                        )))
                 )
             );
   }
