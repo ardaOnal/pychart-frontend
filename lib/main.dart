@@ -103,11 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             IconButton(
                                 icon: const Icon(Icons.arrow_forward_ios_rounded),
                                 onPressed: () { 
-                                }
-                            ),
-                            IconButton(
-                                icon: const Icon(Icons.archive),
-                                onPressed: () { 
+                                    print(theme.material.primaryColor);
                                 }
                             ),
                             IconButton(
@@ -128,7 +124,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }
                             ),
                             FlatButton(  
-                                child: Text('Ereeeeeeeeeeen', style: TextStyle(fontSize: 20.0),),  
+                                child: Text('Run', style: TextStyle(fontSize: 15.0, color: Colors.white),),  
                                 onPressed: () {}) 
                         ]
                     ),
@@ -136,24 +132,27 @@ class _MyHomePageState extends State<MyHomePage> {
                         decoration: new BoxDecoration(
                             shape: BoxShape.rectangle,
                             border: new Border.all(
-                            color: Colors.white,
-                            width: 20.0,
+                            color: theme.material.primaryColorLight,
+                            width: 12.0,
                             ),
                         ),
                         child: EditorWidget(data:data)),
-                        bottomSheet: Container(child: Text('Consolesot',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(color: Colors.white, fontSize: 20),
-                        ), 
-                        color: Colors.grey[850],
+                    bottomSheet: Container(
+                        decoration: new BoxDecoration(
+                            shape: BoxShape.rectangle,
+                            border: new Border.all(
+                            color: theme.material.primaryColorLight,
+                            width: 12.0,
+                            ),
+                        ),
+                        child: Text('Console'), 
+                        //color: Colors.grey[850],
                         height: 200,
-                        width: double.infinity)
+                        width: double.infinity
                     )
-                
-                );
-  }
+                )
+            );
+    }
 }
 
 
