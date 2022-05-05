@@ -140,21 +140,19 @@ class _MyHomePageState extends State<MyHomePage> {
                             width: 20.0,
                             ),
                         ),
-                        child: Flexible( flex: 3, child: EditorWidget(data:data))),
-                        bottomSheet: Flexible( flex: 2, child: Container (child: TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Password',
-                                
-                            ),
-                            ), 
-                            height: 200,
-                        color: Colors.grey[850]
+                        child: EditorWidget(data:data)),
+                        bottomSheet: Container(child: Text('Consolesot',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4!
+                            .copyWith(color: Colors.white, fontSize: 20),
+                        ), 
+                        color: Colors.grey[850],
+                        height: 200,
+                        width: double.infinity)
                     )
-                )
-                )
-            );
+                
+                );
   }
 }
 
