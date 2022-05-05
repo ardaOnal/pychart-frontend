@@ -110,15 +110,15 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () { 
                                 }
                             ),
-                                                        IconButton(
+                            IconButton(
                                 icon: const Icon(Icons.upload_file),
                                 onPressed: () async { 
                                     final result = await FilePicker.platform.pickFiles();
 
-                                    if (result != null) {
-                                        // File file = File(result.files.single.path);
-                                    } else {
-                                        // User canceled the picker
+                                    if ( result != null)
+                                    {
+                                        PlatformFile file = result.files.first;
+                                        print(file.extension);
                                     }
                                 }
                             ),
@@ -132,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 onPressed: () {}) 
                         ]
                     ),
-                                        body: Container (
+                    body: Container (
                         decoration: new BoxDecoration(
                             shape: BoxShape.rectangle,
                             border: new Border.all(
