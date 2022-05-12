@@ -1,5 +1,7 @@
 // dart
 import 'dart:async';
+import 'dart:io';
+import 'dart:convert';
 import 'package:file_picker/file_picker.dart';
 
 // packages
@@ -7,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:docking/docking.dart';
 import 'package:tabbed_view/tabbed_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+
 
 // app 
 import 'themeprovider.dart';
@@ -61,6 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
     ThemeProvider theme = ThemeProvider.provider;
     EditorData data = EditorData();
     final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    String consoleOutput = "";
+    String? fileDirectory = "";
+    String fileName = "";
 
     @override
     void initState() {
@@ -101,31 +108,58 @@ class _MyHomePageState extends State<MyHomePage> {
                                 }
                             ),
                             IconButton(
-                                icon: const Icon(Icons.arrow_forward_ios_rounded),
-                                onPressed: () { 
-                                    print(theme.material.primaryColor);
-                                }
-                            ),
-                            IconButton(
                                 icon: const Icon(Icons.upload_file),
                                 onPressed: () async { 
                                     final result = await FilePicker.platform.pickFiles();
 
                                     if ( result != null)
                                     {
-                                        PlatformFile file = result.files.first;
-                                        print(file.extension);
+                                        PlatformFile platformFile = result.files.first;
+
+                                        fileDirectory = platformFile.path;
+                                        fileDirectory = fileDirectory!.replaceAll('\\','/');
+
+                                        for (var i = 0; i < fileDirectory!.length; i++) {
+                                            if ( fileDirectory![fileDirectory!.length - i - 1] == '/')
+                                            {
+                                                fileDirectory = fileDirectory!.substring(0, fileDirectory!.length - i - 1);
+                                                break;
+                                            }
+                                        }
+
+                                        fileName = platformFile.name;
+
+                                        final File file = File(fileDirectory!);
+                                        final contents = await file.readAsString();
+                                        print(contents);
+
                                     }
                                 }
                             ),
                             IconButton(
                                 icon: const Icon(Icons.save),
-                                onPressed: () { 
+                                onPressed: () 
+                                { 
+                                    
                                 }
                             ),
                             FlatButton(  
                                 child: Text('Run', style: TextStyle(fontSize: 15.0, color: Colors.white),),  
-                                onPressed: () {}) 
+                                onPressed: () async {
+                                    Directory.current = new Directory('D:/Bilkent/2021-2022 Spring (RUC)/Courses/Subject Module In Computer Science/Code/pychart');
+
+                                    final Directory directory = await getApplicationDocumentsDirectory();
+                                    final File file = File('D:/Bilkent/2021-2022 Spring (RUC)/Courses/Subject Module In Computer Science/Code/pychart/test.pych');
+                                    await file.writeAsString(data.controller.text);
+                                    var result = await Process.run('python', ['main.py', 'test.pych']);
+                                    print(result.stdout);
+                                    consoleOutput = result.stdout;
+                                    setState(() { 
+                                        SharedPreferences.getInstance().then((value){
+                                            data.save(value);
+                                        });
+                                    });
+                                }) 
                         ]
                     ),
                     body: Container (
@@ -145,7 +179,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             width: 12.0,
                             ),
                         ),
-                        child: Text('Console'), 
+                        child: Text('Console Output:\n' + consoleOutput), 
                         //color: Colors.grey[850],
                         height: 200,
                         width: double.infinity
